@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title_page%}
+{{latest_poll_list.page_title}}
+{% endblock %}
+
+{% block content %}
+
+	{% for article in article_list %}
+		<div>
+			<h2>{{article.title}}</h2>
+			<div><h4>{{ article.category_id.name }}</h4></div>
+			<div>
+			{% for t in article.tagList.all %}
+				<span class="label label-default">{{ t.name }}</span>
+			{% endfor %}
+			</div>
+			<p>{{article.short_description}}</p>
+			<div class="right"><span class="label label-info">{{article.date_publish}}</span>
+			</div>
+		</div>
+		<hr />
+	{% endfor %}
+
+{% endblock %}

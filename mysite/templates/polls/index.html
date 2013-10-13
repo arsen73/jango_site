@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title_page%}
+{{latest_poll_list.page_title}}
+{% endblock %}
+
+{% block content %}
+	{% if latest_poll_list.cont %}
+		<ul>
+			{% for poll in latest_poll_list.cont %}
+				<li><a href="{% url 'polls:detail' poll.id %}">{{poll.question}}</a></li>
+			{% endfor %}
+		</ul>
+	{% else %}
+		<p>No polls are available.</p>
+	{% endif %}
+{% endblock %}
