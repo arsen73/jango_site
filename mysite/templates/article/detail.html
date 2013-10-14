@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title_page%}
+	{{article.title}}
+{% endblock %}
+{% block content %}
+	<h1>{{ article.title }}</h1>
+	<div>
+		{{ article.content }}
+	</div>
+	<div>
+		{% for t in article.tagList.all %}
+			<a href="{{ t.get_absolute_url }}" class="label label-default">{{ t.name }}</a>
+		{% endfor %}
+	</div>
+{% endblock %}

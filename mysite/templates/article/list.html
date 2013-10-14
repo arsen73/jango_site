@@ -9,14 +9,16 @@
 	{% for article in article_list %}
 		<div>
 			<h2>{{article.title}}</h2>
-			<div><h4>{{ article.category_id.name }}</h4></div>
+			<div><a href="{{ article.category_id.get_absolute_url }}"><h4>{{ article.category_id.name }}</h4></a></div>
 			<div>
 			{% for t in article.tagList.all %}
-				<span class="label label-default">{{ t.name }}</span>
+				<a href="{{ t.get_absolute_url }}" class="label label-default">{{ t.name }}</a>
 			{% endfor %}
 			</div>
 			<p>{{article.short_description}}</p>
-			<div class="right"><span class="label label-info">{{article.date_publish}}</span>
+			<div class="right">
+				<span class="label label-info">{{article.date_publish}}</span>
+				<a href="{{ article.get_absolute_url }}">View</a>
 			</div>
 		</div>
 		<hr />

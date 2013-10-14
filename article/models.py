@@ -30,6 +30,9 @@ class CategoriesArticles(models.Model):
 	def __unicode__(self):
 		return self.name
 
+	def get_absolute_url(self):
+		return "/article/%s/catigory" % self.slug
+
 
 class TagArticles(models.Model):
 	name = models.CharField(max_length=200,
@@ -39,6 +42,9 @@ class TagArticles(models.Model):
 
 	def __unicode__(self):
 		return self.name
+
+	def get_absolute_url(self):
+		return "/article/%s/tag" % self.slug
 
 class Articles(models.Model):
 	category_id = models.ForeignKey(CategoriesArticles, verbose_name="Категория")
@@ -58,4 +64,7 @@ class Articles(models.Model):
 	content = models.TextField(verbose_name="Контент")
 
 	def __unicode__(self):
-		return self.title	
+		return self.title
+
+	def get_absolute_url(self):
+		return "/article/%s/" % self.slug	
