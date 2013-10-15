@@ -178,6 +178,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
     # MyMenu context
     'mymenu.context_processors.context',
+    # Article context
+    'article.context_processor.context',
 )
 
 #django registration
