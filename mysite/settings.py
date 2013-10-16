@@ -133,7 +133,8 @@ INSTALLED_APPS = (
     'polls',
     'registration',
     'mymenu',
-    'article'
+    'article',
+    'django_bootstrap_breadcrumbs'
 )
 
 # A sample logging configuration. The only tangible logging
