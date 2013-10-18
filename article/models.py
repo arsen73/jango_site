@@ -31,7 +31,10 @@ class CategoriesArticles(models.Model):
 		return self.name
 
 	def get_absolute_url(self):
-		return "/article/%s/catigory" % self.slug
+		return "/article/%s/catigory/" % self.slug
+
+	def get_count(self):
+		return str(1)
 
 
 class TagArticles(models.Model):
@@ -44,7 +47,7 @@ class TagArticles(models.Model):
 		return self.name
 
 	def get_absolute_url(self):
-		return "/article/%s/tag" % self.slug
+		return "/article/%s/tag/" % self.slug
 
 class Articles(models.Model):
 	category_id = models.ForeignKey(CategoriesArticles, verbose_name="Категория")

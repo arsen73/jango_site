@@ -1,8 +1,15 @@
 {% extends "layout.html" %}
-
+{% load django_bootstrap_breadcrumbs %}
 {% block title_page%}
 	{{article.title}}
 {% endblock %}
+
+{% block breadcrumbs %}
+			{% breadcrumb "Home" "/" %}
+			{% breadcrumb article.category_id.name article.category_id.get_absolute_url %}
+		    {% breadcrumb article.title article.get_absolute_url %}
+{% endblock %}
+
 {% block content %}
 	<h1>{{ article.title }}</h1>
 	<div>

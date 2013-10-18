@@ -3,11 +3,14 @@
 import models
 
 def context(request):
-    cats = models.CategoriesArticles.objects.filter()
+    cats = models.CategoriesArticles.objects.all()
     context = {
-        'cats': {}
+        'cats': {},
+        'tags': {}
     }
     for cat in cats:
+    	cat.count = len(models.Articles.objects.filter(category_id=cat.id))
         context['cats'][cat.slug] = cat
-    print context
+
+    context['tags'] = models.TagArticles.objects.all()
     return {'context': context}

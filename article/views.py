@@ -22,8 +22,10 @@ class DetailView(generic.DetailView):
 
 def forTag(request,slug):
 	article_list = Articles.objects.filter(tagList=TagArticles.objects.filter(slug=slug)).order_by('-date_publish')[:5]
-	return render(request, 'article/list.html', {'article_list': article_list})
+	tag = TagArticles.objects.filter(slug=slug)[:1]
+	return render(request, 'article/list.html', {'article_list': article_list, 'breadcrumbs': tag[0]})
 
 def forCategories(request,slug):
 	article_list = Articles.objects.filter(category_id=CategoriesArticles.objects.filter(slug=slug)).order_by('-date_publish')[:5]
-	return render(request, 'article/list.html', {'article_list': article_list})
+	cat = CategoriesArticles.objects.filter(slug=slug)[:1]
+	return render(request, 'article/list.html', {'article_list': article_list, 'breadcrumbs': cat[0]})
