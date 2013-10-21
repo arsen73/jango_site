@@ -48,6 +48,32 @@
 				    {% endif %}>{{ menu_item.name }}</a></li>
 				{% endifequal %}
 			{% endfor %}
+			{% if user.is_authenticated %}
+				<li class="dropdown">
+			        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Мой профиль<b class="caret"></b></a>
+				 <ul class="dropdown-menu">
+				 	{% for m_item in menu.menu_for_authorized.items %}
+				 		{% ifequal request.get_full_path m_item.url %}
+					       <li class="active"><a href="">{{ m_item.name }}</a></li>
+					    {% else %}
+					    	 <li>
+						    <a href="{{ m_item.url }}"
+
+						    {% if m_item.title %}
+						        title="{{ m_item.title }}"
+						    {% endif %}
+
+						    {% if m_item.target %}
+						        target="{{ m_item.target }}"
+						    {% endif %}>{{ m_item.name }}</a></li>
+						{% endifequal %}
+					{% endfor %}
+				</ul>
+				</li>
+			{% else %}
+				<li><a href="/accounts/login/">Вход</a></li>
+				<li><a href="/accounts/register/">Регистрация</a></li>
+			{% endif %}
 		    </ul>
 		    <form class="navbar-form navbar-left" role="search">
 		      <div class="form-group">
