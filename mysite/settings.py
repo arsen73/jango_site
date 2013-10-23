@@ -137,6 +137,7 @@ INSTALLED_APPS = (
     'article',
     'django_bootstrap_breadcrumbs',
     'pagination',
+    'accounts',
 )
 
 # A sample logging configuration. The only tangible logging
