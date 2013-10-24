@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import datetime
 import hashlib
 import random
@@ -9,6 +10,8 @@ from django.db import models
 from django.db import transaction
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
+
+from accounts.models import UserProfile, Team
 
 try:
     from django.contrib.auth import get_user_model
@@ -108,6 +111,10 @@ class RegistrationManager(models.Manager):
         if isinstance(username, unicode):
             username = username.encode('utf-8')
         activation_key = hashlib.sha1(salt+username).hexdigest()
+
+        profile = UserProfile(user=user)
+        profile.save()
+
         return self.create(user=user,
                            activation_key=activation_key)
         
