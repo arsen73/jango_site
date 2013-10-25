@@ -1,0 +1,48 @@
+{% extends "col2.html" %}
+{% load django_bootstrap_breadcrumbs %}
+{% load pagination_tags %}
+
+{% block title_page%}
+{{latest_poll_list.page_title}}
+{% endblock %}
+
+{% block breadcrumbs %}
+			{% breadcrumb "Home" "/" %}
+			{% breadcrumb "Мой профайл" "/article" %}
+			{% breadcrumb breadcrumbs.name breadcrumbs.get_absolute_url %}
+{% endblock %}
+
+{% block left %}
+	
+	
+{% endblock %}
+
+{% block right %}
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<h3 class="panel-title">Категории</h3>
+		</div>
+		<div class="list-group">
+		{% for x, cat in context.cats.items %}
+			<a href="{{ cat.get_absolute_url }}" class="list-group-item{% ifequal request.get_full_path cat.get_absolute_url %} active{% endifequal %}">
+			<h4 class="list-group-item-heading">
+				{{ cat.name }}
+				<span class="badge">{{ cat.count }}</span>
+			</h4>
+			<p class="list-group-item-text">
+				{{ cat.short_description }}
+			</p>
+			</a>
+		{% endfor %}
+		</div>
+	</div>
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<h3 class="panel-title">Теги</h3>
+		</div>
+		{% for tag in context.tags %}
+			<a href="{{ tag.get_absolute_url }}"><span class="label label-info">{{ tag.name }}</span></a>
+		{% endfor %}
+	</div>
+{% endblock %}
+

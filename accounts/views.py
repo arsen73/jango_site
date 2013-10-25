@@ -3,22 +3,25 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.template import RequestContext, loader
 from django.shortcuts import render, get_object_or_404
 from django.core.urlresolvers import reverse
-from article.models import UserProfile, Team
+from accounts.models import UserProfile, Team
+from django.contrib.auth.models import User
 from django.views import generic
 from django.utils import timezone
 
-class MyAccount(Object):
-	template_name = "article/list.html"
-	context_object_name = "article_list"
+class MyAccount(generic.DetailView):
+	model = UserProfile
+	template_name = "accounts/edit.html"
+	context_object_name = "account"
 
-	def Form(self):
-		content = Articles.objects.filter(date_publish__lte=timezone.now()).order_by('-date_publish')[:5]
+
+class ListUser(generic.ListView):
+	model = UserProfile
+	template_name = "accounts/users.html"
+	context_object_name = "users"
+
+	def get_queryset(self):
+		content = UserProfile.objects.all()
 		return content
-
-class DetailView(generic.DetailView):
-	model = Articles
-	template_name = "article/detail.html"
-	context_object_name = "article"
 
 def forTag(request,slug):
 	article_list = Articles.objects.filter(tagList=TagArticles.objects.filter(slug=slug)).order_by('-date_publish')[:5]
