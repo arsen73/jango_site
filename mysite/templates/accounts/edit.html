@@ -8,7 +8,7 @@
 
 {% block breadcrumbs %}
 			{% breadcrumb "Home" "/" %}
-			{% breadcrumb "Мой профайл" "/article" %}
+			{% breadcrumb "Мой профайл" "" %}
 			{% breadcrumb breadcrumbs.name breadcrumbs.get_absolute_url %}
 {% endblock %}
 
@@ -16,7 +16,11 @@
 	<div>
 		<div class="row">
 			<div>
-				{{form}}
+				{# http://djbook.ru/rel1.5/topics/forms/index.html #}
+				<form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+					{{ form.as_p }}
+					<input type="submit" value="Submit" />
+				</form>
 			</div>
 		</div>
 	</div>

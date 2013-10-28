@@ -20,4 +20,5 @@ urlpatterns = patterns('',
     url(r'^register/$', 'registration.backends.simple.views.RegistrationView', {'form': RegistrationFormUniqueEmail}, name='registration_register'),
     url(r'^accounts/', include('registration.urls')),
     url(r'^profile/', include('accounts.urls')),
+    url(r'^', include('article.urls', namespace="article")),
 )

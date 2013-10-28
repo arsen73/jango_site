@@ -17,6 +17,7 @@
 	{% for user in users %}
 		<div>
 			<h2>{{user.user.username}}</h2>
+            <img src="{{ user.avatar }}">
 			<div><a href="{{ user.category_id.get_absolute_url }}"><h4>{{ user }}</h4></a></div>
 		</div>
 		<hr />
