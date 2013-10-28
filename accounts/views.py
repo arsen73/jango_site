@@ -7,23 +7,23 @@ from accounts.models import UserProfile, Team
 from django.contrib.auth.models import User
 from django.views import generic
 from django.utils import timezone
+from forms import UserProfileForm
 
 class ViewAccount(generic.DetailView):
 	model = UserProfile
-	template_name = "accounts/edit.html"
+	template_name = "accounts/view.html"
 	context_object_name = "account"
 
 
 class ListUser(generic.ListView):
 	model = UserProfile
 	template_name = "accounts/users.html"
-	context_object_name = "user"
+	context_object_name = "users"
 
 	def get_queryset(self):
 		content = UserProfile.objects.all()
 		return content
 
-def forTag(request,slug):
-	article_list = Articles.objects.filter(tagList=TagArticles.objects.filter(slug=slug)).order_by('-date_publish')[:5]
-	tag = TagArticles.objects.filter(slug=slug)[:1]
-	return render(request, 'article/list.html', {'article_list': article_list, 'breadcrumbs': tag[0]})
+def MyAccount(request,slug):
+	form = UserProfileForm
+	return render(request, 'accounts/edit.html', {'form': form})
