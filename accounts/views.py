@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from django.views import generic
 from django.utils import timezone
 
-class MyAccount(generic.DetailView):
+class ViewAccount(generic.DetailView):
 	model = UserProfile
 	template_name = "accounts/edit.html"
 	context_object_name = "account"
@@ -17,7 +17,7 @@ class MyAccount(generic.DetailView):
 class ListUser(generic.ListView):
 	model = UserProfile
 	template_name = "accounts/users.html"
-	context_object_name = "users"
+	context_object_name = "user"
 
 	def get_queryset(self):
 		content = UserProfile.objects.all()
